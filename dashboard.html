@@ -1,53 +1,197 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>KitjuuHost Dashboard</title>
+
+<title>KitjuuHost Panel</title>
 
 <style>
+
 body{
-font-family:Arial;
 background:#0f172a;
+font-family:Arial;
 color:white;
-text-align:center;
-padding:40px;
+margin:0;
+}
+
+.sidebar{
+width:200px;
+height:100vh;
+background:#020617;
+position:fixed;
+padding:20px;
+}
+
+.sidebar h2{
+color:#22c55e;
+}
+
+.sidebar a{
+display:block;
+color:white;
+margin:12px 0;
+text-decoration:none;
+}
+
+.main{
+margin-left:220px;
+padding:30px;
+}
+
+.card{
+background:#1e293b;
+padding:15px;
+border-radius:8px;
+margin-bottom:20px;
 }
 
 button{
 background:#22c55e;
 border:none;
-padding:12px 20px;
-margin:10px;
+padding:10px 16px;
+margin:5px;
 border-radius:6px;
 color:white;
-font-size:16px;
+cursor:pointer;
 }
+
+.console{
+background:black;
+padding:15px;
+height:180px;
+overflow:auto;
+font-family:monospace;
+}
+
+select{
+padding:6px;
+border-radius:5px;
+}
+
+input{
+padding:6px;
+border-radius:5px;
+}
+
 </style>
 
 </head>
 
 <body>
 
-<h1>KitjuuHost Dashboard</h1>
+<div class="sidebar">
+
+<h2>KitjuuHost</h2>
+
+<a href="#">Dashboard</a>
+<a href="#">Servers</a>
+<a href="#">Plugins</a>
+<a href="#">Files</a>
+
+</div>
+
+<div class="main">
+
+<h1>Server Panel</h1>
+
+<div class="card">
+
+<h3>Server Controls</h3>
 
 <p>Status: Offline</p>
 
-<button onclick="startServer()">Start Server</button>
+<button onclick="log('Server starting...')">Start</button>
+<button onclick="log('Server stopping...')">Stop</button>
+<button onclick="log('Server restarting...')">Restart</button>
 
-<button onclick="stopServer()">Stop Server</button>
+</div>
+
+<div class="card">
+
+<h3>Server RAM</h3>
+
+<select>
+<option>1 GB</option>
+<option>2 GB</option>
+<option>4 GB</option>
+<option>8 GB</option>
+</select>
+
+</div>
+
+<div class="card">
+
+<h3>Minecraft Version</h3>
+
+<select>
+<option>1.21</option>
+<option>1.20</option>
+<option>1.19</option>
+<option>Paper</option>
+<option>Forge</option>
+<option>Fabric</option>
+</select>
+
+</div>
+
+<div class="card">
+
+<h3>Modpack Installer</h3>
+
+<button onclick="install('SkyBlock')">Install SkyBlock</button>
+<button onclick="install('Pixelmon')">Install Pixelmon</button>
+<button onclick="install('RLCraft')">Install RLCraft</button>
+
+</div>
+
+<div class="card">
+
+<h3>Upload World</h3>
+
+<input type="file">
+
+</div>
+
+<div class="card">
+
+<h3>File Manager</h3>
+
+<p>server.properties</p>
+<p>plugins/</p>
+<p>world/</p>
+
+</div>
+
+<div class="card">
+
+<h3>Server Console</h3>
+
+<div class="console" id="console">
+
+> Console ready
+
+</div>
+
+</div>
+
+</div>
 
 <script>
 
-function startServer(){
-alert("Minecraft server starting...");
+function log(text){
+
+let consoleBox = document.getElementById("console");
+
+consoleBox.innerHTML += "<br>> " + text;
+
 }
 
-function stopServer(){
-alert("Minecraft server stopping...");
+function install(modpack){
+
+log(modpack + " installed");
+
 }
 
 </script>
 
 </body>
-
-</html>
+  </html> 
